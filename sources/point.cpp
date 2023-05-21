@@ -24,7 +24,14 @@ namespace ariel
     Point Point::moveTowards(const Point &origin,const Point &dest, double length)
     {
         
-        // double dist = Point::my_dist(origin,dest);
+        if(length == 0)
+        {
+            return origin;
+        }
+        if(length < 0)
+        {
+            throw invalid_argument("distance cant be less then 0");
+        }
         double dist = origin.distance(dest);
         if(dist < length)
         {

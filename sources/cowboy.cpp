@@ -39,9 +39,9 @@ namespace ariel
     string Cowboy::print()
     {
         string print = "";
-        print +=this->GetName() + ": is a Cowboy\n";
+        print +=this->getName() + ": is a Cowboy\n";
         print += "life left: " + to_string(this->GetLife());
-        print += "\nlocation: " + this->Getlocation().print() + "\n";
+        print += "\nlocation: " + this->getLocation().print() + "\n";
         return print;
     }
 }

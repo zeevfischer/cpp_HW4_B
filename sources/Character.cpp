@@ -8,7 +8,9 @@ namespace ariel{
         this->life = life;
         this->name = name;
     }
-    
+    Character::~Character()
+    {
+    }
     bool Character::isAlive(){
         if(this->life > 0)
         {
@@ -40,17 +42,21 @@ namespace ariel{
         return out;
     }   
     //getters
-    string Character::GetName()
+    string Character::getName()
     {
         return this->name;
     }
-    Point Character::Getlocation()
+    Point Character::getLocation()
     {
         return this->location;
     }
     int Character::GetLife()
     {
         return this->life;
+    }
+    bool Character::GetInGame()
+    {
+        return this->in_game;
     }
     //setters
     void Character::Setlife(int life)
@@ -70,6 +76,10 @@ namespace ariel{
     {
         Point p(x,y);
         this->location = p;
+    }
+    void Character::SetInGame(bool state)
+    {
+        this->in_game = state;
     }
 
 }

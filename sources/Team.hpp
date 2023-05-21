@@ -14,7 +14,7 @@ namespace ariel{
             Character* leader;
         public:
             LeaderTeam(Character* leader);
-            // ~LeaderTeam();
+            virtual ~LeaderTeam();
             void add(Character* NewMember);
             int stillAlive();
             virtual void attack(LeaderTeam* team) = 0;

@@ -6,16 +6,24 @@ namespace ariel
     LeaderTeam::LeaderTeam(Character* leader)
     {
         this->leader = leader;//this need to point to leader
-        this->members.push_back(leader);
+        this->add(leader);
+    }
+    LeaderTeam::~LeaderTeam()
+    {
+        for(auto member : this->members)
+        {
+            delete member;
+        }
+        this->members.clear();
     }
     void LeaderTeam::add(Character* newMember)
     {
-        if(this->members.size() < 10)
+        if(this->members.size() < 10 && newMember != nullptr && newMember->isAlive() == true && newMember->GetInGame() == false)
         {
             this->members.push_back(newMember); //this needs fixing
             return;
         }
-        throw "your teem is full";
+        throw runtime_error("your teem is full");
     }
     int LeaderTeam::stillAlive()
     {
@@ -29,13 +37,12 @@ namespace ariel
         }
         return count;
     }
-    void LeaderTeam::attack(LeaderTeam* team)
-    {
-
-    }
     void LeaderTeam::print()
     {
-        
+        for (auto player: this->members)
+        {
+            player->print();
+        }
     }
     vector<Character*> LeaderTeam::GetMembers()
     {

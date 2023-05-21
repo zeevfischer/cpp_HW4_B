@@ -21,7 +21,7 @@ namespace ariel
     }
     void Ninja::move(Character *opponent)
     {
-        Point temp = Point::moveTowards(this->Getlocation(),opponent->Getlocation(),this->speed);
+        Point temp = Point::moveTowards(this->getLocation(),opponent->getLocation(),this->speed);
         this->Setlocation(temp);
     }
     int Ninja::getSpeed()
@@ -35,9 +35,9 @@ namespace ariel
     string Ninja::print()
     {
         string print = "";
-        print +=this->GetName() + ": is a Ninja\n";
+        print +=this->getName() + ": is a Ninja\n";
         print += "life left: " + to_string(this->GetLife());
-        print += "\nlocation: " + this->Getlocation().print() + "\n";
+        print += "\nlocation: " + this->getLocation().print() + "\n";
         return print;
     }
 
