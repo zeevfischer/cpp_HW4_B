@@ -7,6 +7,7 @@ namespace ariel{
         this->location = location;
         this->life = life;
         this->name = name;
+        this->in_game = false;
     }
     Character::~Character()
     {

@@ -3,9 +3,12 @@
 using namespace std;
 namespace ariel
 {
-    LeaderTeam::LeaderTeam(Character* leader)
+    LeaderTeam::LeaderTeam(Character* leader) : leader(leader)
     {
-        this->leader = leader;//this need to point to leader
+        if(leader->GetInGame() == true)
+        {
+            throw runtime_error("player is alredy in game");
+        }
         this->add(leader);
     }
     LeaderTeam::~LeaderTeam()
@@ -20,7 +23,8 @@ namespace ariel
     {
         if(this->members.size() < 10 && newMember != nullptr && newMember->isAlive() == true && newMember->GetInGame() == false)
         {
-            this->members.push_back(newMember); //this needs fixing
+            this->members.push_back(newMember);
+            newMember->SetInGame(true);
             return;
         }
         throw runtime_error("your teem is full");
