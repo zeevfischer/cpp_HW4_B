@@ -18,11 +18,12 @@ namespace ariel{
             void add(Character* NewMember);
             int stillAlive();
             virtual void attack(LeaderTeam* team) = 0;
-            void print();
+            virtual void print() = 0;
             //my functions
             vector<Character*> GetMembers();
             Character* Getleader();
-            Character* GetNewLeader(LeaderTeam* team);
+            void SetNewLeader();
+            Character* GetClosestMember(Character* leader);
     };
 
     class Team:public LeaderTeam
@@ -30,6 +31,7 @@ namespace ariel{
         public:
             Team(Character* leader):LeaderTeam(leader){}
             void attack(LeaderTeam* team) override;
+            void print() override;
     };
 
     class Team2:public LeaderTeam
@@ -37,6 +39,7 @@ namespace ariel{
         public:
             Team2(Character* leader):LeaderTeam(leader){}
             void attack(LeaderTeam* team) override;
+            void print() override;
 
     };
     class SmartTeam:public LeaderTeam
@@ -44,6 +47,7 @@ namespace ariel{
         public:
             SmartTeam(Character* leader):LeaderTeam(leader){}
             void attack(LeaderTeam* team) override;
+            void print() override;
 
     };
 }
