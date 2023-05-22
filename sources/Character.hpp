@@ -21,7 +21,7 @@ namespace ariel
         bool isAlive(); // life > 0
         double distance(const Character* other);
         void hit(int attack);//life - attack
-        virtual string print() = 0;
+        virtual string print() = 0; // need to fix 
 
         //getters
         string getName();

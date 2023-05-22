@@ -14,6 +14,18 @@ namespace ariel
     }
     void Ninja::slash(Character* opponent)
     {
+        if(this == opponent)
+        {
+            throw runtime_error("cnat attack yourself");
+        }
+        if(opponent->isAlive() == false)
+        {
+            throw  runtime_error("the enamy your attacking is dead");
+        }
+        if(this->GetLife() <= 0)
+        {
+            throw  runtime_error("this player is dead");
+        }
         if(this->distance(opponent) <= 1)//in range needs fixing this is probrbly not accuret
         {
             opponent->hit(40);
@@ -43,7 +55,7 @@ namespace ariel
 
     //OldNinja constructor
     OldNinja::OldNinja(string name, Point location)
-        : Ninja(location, name, 140, 8) {}
+        : Ninja(location, name, 150, 8) {}
 
     //TrainedNinja constructor
     TrainedNinja::TrainedNinja(string name, Point location)

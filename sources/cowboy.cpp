@@ -9,12 +9,27 @@ namespace ariel
 
     void Cowboy::shoot(Character *atack)
     {
+        if(this == atack)
+        {
+            throw runtime_error("cnat attack yourself");
+        }
         if(atack->isAlive() == false)
         {
-            throw  "the enamy your attacking is dead";
+            throw  runtime_error("the enamy your attacking is dead");
         }
-        atack->hit(10);
-        this->bullets--;
+        if(this->GetLife() < 0)
+        {
+            throw  runtime_error("this player is dead");
+        }
+        if(this->bullets > 0)
+        {
+            atack->hit(10);
+            this->bullets--;
+        }
+        // else
+        // {
+        //     throw "you have no bullets";
+        // }
     }
     bool Cowboy::hasboolets()
     {
@@ -30,9 +45,13 @@ namespace ariel
     }
     void Cowboy::reload()
     {
-        if(this->bullets > 0)
+        // if(this->bullets > 0)
+        // {
+        //     throw "you can still atack";
+        // }
+        if(this->GetLife() <= 0)
         {
-            throw "you can still atack";
+            throw runtime_error("this player is dead and cant reload");
         }
         this->bullets = 6;
     }

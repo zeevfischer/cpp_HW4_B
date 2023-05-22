@@ -1,8 +1,10 @@
 #include "Team.hpp"
 #include <iostream>
+#include <numeric> 
 using namespace std;
 namespace ariel
 {
+    int max_int = std::numeric_limits<int>::max();
     LeaderTeam::LeaderTeam(Character* leader) : leader(leader)
     {
         if(leader->GetInGame() == true)
@@ -56,12 +58,28 @@ namespace ariel
     {
         return this->leader;
     }
-
+    Character* LeaderTeam::GetNewLeader(LeaderTeam* team)
+    {
+        Character* temp = nullptr;
+        double dist = max_int;
+        for (auto member : this->members)
+        {
+            if(this->leader->distance(member) < dist && member->isAlive() == true)
+            {
+                temp  = member;
+                dist = this->leader->distance(member);
+            }
+        }
+        this->leader = temp;
+    }
 
     //Team
     void Team::attack(LeaderTeam* team)
     {
-
+        if(team->Getleader()->isAlive() == false)
+        {
+            GetNewLeader(team);
+        }
     }
     void Team2::attack(LeaderTeam* team)
     {

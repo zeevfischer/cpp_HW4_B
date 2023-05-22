@@ -22,6 +22,7 @@ namespace ariel{
             //my functions
             vector<Character*> GetMembers();
             Character* Getleader();
+            Character* GetNewLeader(LeaderTeam* team);
     };
 
     class Team:public LeaderTeam

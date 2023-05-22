@@ -32,7 +32,14 @@ namespace ariel{
     }
     void Character::hit(int damage)
     {
-        this->life -= damage;
+        if(damage > 0)
+        {
+            this->life -= damage;
+        }
+        else
+        {
+            throw invalid_argument ("cant hit with damege < 0 ");
+        }
     }
     string Character::print()
     {
