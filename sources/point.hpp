@@ -11,10 +11,10 @@ namespace ariel
         double x;
         double y;
     public:
-        Point(double x, double y);
+        Point(double val_x, double val_y);
         Point();
         // ~Point();
-        const double distance(const Point& p) const;
+        const double distance(const Point& point) const;
         static Point moveTowards(const Point& origin ,const Point& dest,double length);
         
         //getters

@@ -18,6 +18,7 @@ namespace ariel{
             int getSpeed();
             void setSpeed(int speed);
             string print() override;
+
     };
     //Ninja classification
     /*

@@ -9,9 +9,6 @@ namespace ariel{
         this->name = name;
         this->in_game = false;
     }
-    Character::~Character()
-    {
-    }
     bool Character::isAlive(){
         if(this->life > 0)
         {
@@ -78,11 +75,6 @@ namespace ariel{
     void Character::Setlocation(Point location)
     {
         Point p(location.get_x(),location.get_y());
-        this->location = p;
-    }
-    void Character::Setlocation(int x,int y)
-    {
-        Point p(x,y);
         this->location = p;
     }
     void Character::SetInGame(bool state)

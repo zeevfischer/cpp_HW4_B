@@ -24,6 +24,41 @@ namespace ariel{
             Character* Getleader();
             void SetNewLeader();
             Character* GetClosestMember(Character* leader);
+
+            // tidy
+            // Copy Constructor:
+            LeaderTeam(const LeaderTeam& other) :members(other.members),leader(other.leader){}
+            // Copy Assignment Operator:
+            LeaderTeam& operator=(const LeaderTeam& other) 
+            {
+                if (this != &other) {
+                    // Copy members vector
+                    members = other.members;
+
+                    // Copy leader pointer
+                    leader = other.leader;
+                }
+                return *this;
+            }
+            // Move Constructor:
+            LeaderTeam(LeaderTeam&& other) noexcept :members(std::move(other.members)),leader(other.leader)
+            {
+                other.leader = nullptr;
+            }
+            // Move Assignment Operator:
+            LeaderTeam& operator=(LeaderTeam&& other) noexcept 
+            {
+                if (this != &other) {
+                    // Move members vector
+                    members = std::move(other.members);
+
+                    // Move leader pointer
+                    leader = other.leader;
+                    other.leader = nullptr;
+                }
+                return *this;
+            }
+        
     };
 
     class Team:public LeaderTeam
@@ -31,7 +66,7 @@ namespace ariel{
         public:
             Team(Character* leader):LeaderTeam(leader){}
             void attack(LeaderTeam* team) override;
-            virtual void print() override;
+            void print() override;
     };
 
     class Team2:public Team

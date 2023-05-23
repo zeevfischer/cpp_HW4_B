@@ -6,7 +6,10 @@ using namespace std;
 namespace ariel
 {
     Cowboy::Cowboy(string name,Point location):Character(location,110,name),bullets(6){}
-
+    // Character::Character(const Character& other)
+    // : location(other.location), life(other.life), name(other.name), in_game(other.in_game) {
+    // // No need for deep copying since the member variables are of primitive types (int, string, bool)
+    // }
     void Cowboy::shoot(Character *atack)
     {
         if(this == atack)
