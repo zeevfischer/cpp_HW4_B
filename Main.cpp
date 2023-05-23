@@ -1,10 +1,3 @@
-/**
- * Demo file for the exercise on binary tree
- *
- * @author Evgeny Hershkovitch Neiterman
- * @since 2023-03
- */
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -18,6 +11,13 @@ using namespace ariel;
 
 
 int main() {
+   Point aa(0,0) , bb(5,5);
+   double dist = aa.distance(bb);
+   cout << dist << endl;
+   Point temp = Point::moveTowards(aa,bb,5);
+   cout << "temp:" << "(" << temp.get_x() << "," << temp.get_y() << ")" << endl;
+
+   ////////////////////////
     Point a(32.3,44),b(1.3,3.5);
     assert(a.distance(b) == b.distance(a));
     Cowboy *tom = new Cowboy("Tom", a);

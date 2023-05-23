@@ -245,11 +245,79 @@ namespace ariel
     }
     void SmartTeam::attack(LeaderTeam* team)
     {
-        
+        // for every player on the team cowboys will shoot the closest to the leader 
+        // ningas will move to the closest one for them
+        if(team == nullptr)
+        {
+            throw invalid_argument("invalid_argument");
+        }
+        if(this->Getleader()->isAlive() == false)
+        {
+            this->SetNewLeader();
+        }
+        if(team->stillAlive() == 0)
+        {
+            throw runtime_error("team is dead");
+        }
+        for(auto member : this->GetMembers())
+        {
+            if(member != nullptr && this->stillAlive() > 0)
+            {
+                Character* temp = team->GetClosestMember(this->Getleader());
+                if(temp == nullptr)
+                {
+                    return;
+                }
+                if(Cowboy* test = dynamic_cast<Cowboy*>(member))
+                {
+                    if(test->isAlive()==true)
+                    {
+                        if(test->hasboolets() == true)
+                        {
+                            test->shoot(temp);
+                        }
+                        else
+                        {
+                            test->reload();
+                        }
+                    }
+                }
+                if(Ninja* test = dynamic_cast<Ninja*>(member))
+                {
+                    Character* Ninja_close = team->GetClosestMember(member);
+                    if(test->isAlive()==true && Ninja_close->isAlive() == true)
+                    {
+                        if(test->distance(Ninja_close) > 1)
+                        {
+                            test->move(Ninja_close);
+                        }
+                        else
+                        {
+                            test->slash(Ninja_close);
+                        }
+                    }
+                }
+                if(temp->isAlive() == false)
+                {
+                    temp = team->GetClosestMember(this->Getleader());
+                }
+            }
+        }
+
     }
     void SmartTeam::print()
     {
-
+        for (auto player: this->GetMembers())
+        {
+            if(Cowboy* test = dynamic_cast<Cowboy*>(player))
+            {
+                cout << test->print() << endl;
+            }
+            if(Ninja* test = dynamic_cast<Ninja*>(player))
+            {
+                cout << test->print() << endl;
+            }
+        }
     }
 
 
