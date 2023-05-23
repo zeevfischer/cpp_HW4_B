@@ -23,7 +23,9 @@ namespace ariel
     }
     Point Point::moveTowards(const Point &origin,const Point &dest, double length)
     {
-        
+        // cout << "dest: "<<"(" << dest.x << "," << dest.y << ")" << endl; 
+        // cout << "origin: "<<"(" << origin.x << "," << origin.y << ")" << endl; 
+        // cout << endl;
         if(length == 0)
         {
             return origin;
@@ -35,6 +37,7 @@ namespace ariel
         double dist = origin.distance(dest);
         if(dist < length)
         {
+            // cout << "out put: (" << dest.x << "," << dest.y << ")" << endl;
             return dest;
         }
         else
@@ -43,7 +46,9 @@ namespace ariel
             double normalizedDx = (dest.x - origin.x) / dist;
             double normalizedDy = (dest.y - origin.y) / dist;
             Point newPoint(origin.x + (normalizedDx * length),origin.y + (normalizedDy * length));
+            // cout << "out put: "<<newPoint.print()<<endl;
             return newPoint;
+            
         }
     }
     double Point::get_x()

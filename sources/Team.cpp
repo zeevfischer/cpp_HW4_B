@@ -66,7 +66,7 @@ namespace ariel
         }
         if(temp == nullptr)
         {
-            throw "all team is dead";
+            throw runtime_error("all team is dead");
         }
         this->leader = temp;
     }
@@ -80,7 +80,7 @@ namespace ariel
             if(leader->distance(member) < dist && member->isAlive() == true && this->stillAlive() > 0)
             {
                 temp  = member;
-                dist = this->leader->distance(member);
+                dist = leader->distance(member);
             }
         }
         return temp;
@@ -89,21 +89,33 @@ namespace ariel
     //Team
     void Team::attack(LeaderTeam* team)
     {
-        int round = 1;
-        if(team->Getleader()->isAlive() == false)
+        if(team == nullptr)
         {
-            team->SetNewLeader();
+            throw invalid_argument("invalid_argument");
+        }
+        int round = 1;
+        // first set leader for attacking team
+        if(this->Getleader()->isAlive() == false)
+        {
+            this->SetNewLeader();
+        }
+        if(team->stillAlive() == 0)
+        {
+            throw runtime_error("team is dead");
         }
         //first cowboys round == 1 then ninjas round == 2
         for(unsigned long int i =0;i<this->GetMembers().size();i++)
         {
             auto member = this->GetMembers()[i];
             Character* temp = team->GetClosestMember(this->Getleader());
+            if(temp == nullptr)
+            {
+                return;
+            }
             if(Cowboy* test = dynamic_cast<Cowboy*>(member))
             {
-                if(round == 1)
+                if(round == 1 && test->isAlive() == true)
                 {
-                    cout << "C ATTACK" <<endl;
                     if(test->hasboolets() == true)
                     {
                         test->shoot(temp);
@@ -116,18 +128,19 @@ namespace ariel
             }
             if(Ninja* test = dynamic_cast<Ninja*>(member))
             {
-                if(round == 2)
+                
+                if(round == 2 && test->isAlive() == true)
                 {
-                    cout << "N ATTACK" <<endl;
                     if(test->distance(temp) > 1)
                     {
                         test->move(temp);
                     }
                     else
                     {
+                        test->move(temp);
                         test->slash(temp);
                     }
-                }
+                }           
             }
             if(temp->isAlive() == false)
             {
@@ -136,44 +149,99 @@ namespace ariel
             if(i == this->GetMembers().size()-1 && round < 2)
             {
                 round = 2;
-                i = 0;
+                i = i-this->GetMembers().size();
             }
         }
-        // //then Ninjas
-        // for(auto member : this->GetMembers())
-        // {
-        //     Character* temp = team->GetClosestMember(this->Getleader());
-            
-        //     if(temp->isAlive() == false)
-        //     {
-        //         temp = team->GetClosestMember(this->Getleader());
-        //     }
-        // }
     }
+
     void Team::print()
     {
         for (auto player: this->GetMembers())
         {
             if(Cowboy* test = dynamic_cast<Cowboy*>(player))
             {
-                test->print();
+                cout << test->print() << endl;
             }
         }
         for (auto player: this->GetMembers())
         {
             if(Ninja* test = dynamic_cast<Ninja*>(player))
             {
-                test->print();
+                cout << test->print() << endl;
             }
         }
     }
     void Team2::attack(LeaderTeam* team)
     {
-        
+        if(team == nullptr)
+        {
+            throw invalid_argument("invalid_argument");
+        }
+        if(this->Getleader()->isAlive() == false)
+        {
+            this->SetNewLeader();
+        }
+        if(team->stillAlive() == 0)
+        {
+            throw runtime_error("team is dead");
+        }
+        for(auto member : this->GetMembers())
+        {
+            if(member != nullptr && this->stillAlive() > 0)
+            {
+                Character* temp = team->GetClosestMember(this->Getleader());
+                if(temp == nullptr)
+                {
+                    return;
+                }
+                if(Cowboy* test = dynamic_cast<Cowboy*>(member))
+                {
+                    if(test->isAlive()==true)
+                    {
+                        if(test->hasboolets() == true)
+                        {
+                            test->shoot(temp);
+                        }
+                        else
+                        {
+                            test->reload();
+                        }
+                    }
+                }
+                if(Ninja* test = dynamic_cast<Ninja*>(member))
+                {
+                    if(test->isAlive()==true)
+                    {
+                        if(test->distance(temp) > 1)
+                        {
+                            test->move(temp);
+                        }
+                        else
+                        {
+                            test->slash(temp);
+                        }
+                    }
+                }
+                if(temp->isAlive() == false)
+                {
+                    temp = team->GetClosestMember(this->Getleader());
+                }
+            }
+        }
     }
     void Team2::print()
     {
-
+        for (auto player: this->GetMembers())
+        {
+            if(Cowboy* test = dynamic_cast<Cowboy*>(player))
+            {
+                cout << test->print() << endl;
+            }
+            if(Ninja* test = dynamic_cast<Ninja*>(player))
+            {
+                cout << test->print() << endl;
+            }
+        }
     }
     void SmartTeam::attack(LeaderTeam* team)
     {

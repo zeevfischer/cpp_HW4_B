@@ -24,7 +24,7 @@ namespace ariel{
         all the Ninjas have the same functions and parameters the only difference is the value 
         youngNinja speed 14 life 100
         Traind speed 12 life 120
-        old speed 8 life 140 
+        old speed 8 life 150 
     */
     class OldNinja:public Ninja{
         public:

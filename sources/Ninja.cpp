@@ -8,10 +8,6 @@ namespace ariel
 {
     //Ninja
     Ninja::Ninja(Point location,string name,int life,int speed):Character(location,life,name),speed(speed){}
-    void move(Character* opponent)
-    {
-        //how dose it move?
-    }
     void Ninja::slash(Character* opponent)
     {
         if(this == opponent)
@@ -26,7 +22,7 @@ namespace ariel
         {
             throw  runtime_error("this player is dead");
         }
-        if(this->distance(opponent) <= 1)//in range needs fixing this is probrbly not accuret
+        if(this->distance(opponent) <= 1)
         {
             opponent->hit(40);
         }
@@ -49,7 +45,7 @@ namespace ariel
         string print = "";
         print +=this->getName() + ": is a Ninja\n";
         print += "life left: " + to_string(this->GetLife());
-        print += "\nlocation: " + this->getLocation().print() + "\n";
+        print += "\nlocation: " + this->getLocation().print();
         return print;
     }
 

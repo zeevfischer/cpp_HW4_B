@@ -190,40 +190,50 @@ using namespace ariel;
 // }
 TEST_SUITE("Team")
 {
-    TEST_CASE("baisic")
+    // TEST_CASE("baisic")
+    // {
+    //     Cowboy* player1 = new Cowboy("one" , Point(1,2));
+    //     Cowboy* player2 = new Cowboy("tew" , Point(3,2));
+    //     Cowboy* player3 = new Cowboy("three" , Point(5,2));
+
+    //     Team test1(player1);
+    //     Team test2(player3);
+    //     test1.add(player2);
+
+    //     CHECK(test1.stillAlive() == 2);
+
+    //     while(test1.stillAlive() != 0)
+    //     {
+    //         test2.attack(&test1);
+    //     }
+    //     CHECK(test1.stillAlive() == 0);
+    // }
+    // TEST_CASE("attack")
+    // {
+    //     Cowboy* player1 = new Cowboy("alex" , Point(1,2));
+    //     Cowboy* player2 = new Cowboy("alex" , Point(3,2));
+
+    //     Team test1(player1);
+    //     Team test2(player2);
+    //     // cout << "alive t1 " << test1.stillAlive() << endl;
+    //     // cout << "alive t2 " << test2.stillAlive() << endl;
+
+    //     // cout << test1.Getleader()->print() << endl;
+    //     // cout << test2.Getleader()->print() << endl; 
+
+    //     test1.attack(&test2);
+
+    //     // cout << test1.Getleader()->print() << endl;
+    //     // cout << test2.Getleader()->print() << endl;
+    // }
+    TEST_CASE("test")
     {
-        Cowboy* player1 = new Cowboy("one" , Point(1,2));
-        Cowboy* player2 = new Cowboy("tew" , Point(3,2));
-        Cowboy* player3 = new Cowboy("three" , Point(5,2));
-
-        Team test1(player1);
-        Team test2(player3);
-        test1.add(player2);
-
-        CHECK(test1.stillAlive() == 2);
-
-        while(test1.stillAlive() != 0)
-        {
-            test2.attack(&test1);
-        }
-        CHECK(test1.stillAlive() == 0);
-    }
-    TEST_CASE("attack")
-    {
-        // Cowboy* player1 = new Cowboy("alex" , Point(1,2));
-        // Cowboy* player2 = new Cowboy("alex" , Point(3,2));
-
-        // Team test1(player1);
-        // Team test2(player2);
-        // cout << "alive t1 " << test1.stillAlive() << endl;
-        // cout << "alive t2 " << test2.stillAlive() << endl;
-
-        // cout << test1.Getleader()->print() << endl;
-        // cout << test2.Getleader()->print() << endl; 
-
-        // test1.attack(&test2);
-
-        // cout << test1.Getleader()->print() << endl;
-        // cout << test2.Getleader()->print() << endl;
+        Point location1(0,0);
+        Point location2(2,0);
+        OldNinja test("one",location1);
+        OldNinja test2("tew",location2);
+        
+        test.move(&test2);
+        cout << test.print()<<endl;
     }
 }

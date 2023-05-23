@@ -2,7 +2,7 @@
 #define TEAM_HPP
 // #include "LeaderTeam.hpp"
 #include "Character.hpp"
-#include "cowboy.hpp"
+#include "Cowboy.hpp"
 #include "Ninja.hpp"
 #include "point.hpp"
 #include <vector>
@@ -31,13 +31,13 @@ namespace ariel{
         public:
             Team(Character* leader):LeaderTeam(leader){}
             void attack(LeaderTeam* team) override;
-            void print() override;
+            virtual void print() override;
     };
 
-    class Team2:public LeaderTeam
+    class Team2:public Team
     {
         public:
-            Team2(Character* leader):LeaderTeam(leader){}
+            Team2(Character* leader):Team(leader){}
             void attack(LeaderTeam* team) override;
             void print() override;
 

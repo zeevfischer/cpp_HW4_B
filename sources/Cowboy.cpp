@@ -1,4 +1,4 @@
-#include "cowboy.hpp"
+#include "Cowboy.hpp"
 #include <string>
 #include <iostream>
 using namespace std;
@@ -60,7 +60,7 @@ namespace ariel
         string print = "";
         print +=this->getName() + ": is a Cowboy\n";
         print += "life left: " + to_string(this->GetLife());
-        print += "\nlocation: " + this->getLocation().print() + "\n";
+        print += "\nlocation: " + this->getLocation().print();
         return print;
     }
 }
